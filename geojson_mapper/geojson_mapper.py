@@ -44,8 +44,8 @@ class GeoJsonMapper:
         return geo_json_data
 
     def _normalise_values(self, values):
-        max_value = max([int(float(i)) for i in values.values()])
-        min_value = min([int(float(i)) for i in values.values()])
+        max_value = max([int(i) for i in values.values()])
+        min_value = min([int(i) for i in values.values()])
         for value in values:
             values[value] = (int(values[value]) - min_value)/(max_value - min_value)
         return values
