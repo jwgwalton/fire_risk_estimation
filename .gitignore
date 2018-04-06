@@ -1,0 +1,3 @@
+*.pyc
+.idea/
+/geojson_mapper/__pycache__/
