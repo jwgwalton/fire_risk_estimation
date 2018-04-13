@@ -6,11 +6,25 @@ The aim of this project is to estimate fire risk by area and property for London
 This repo used data released by the London Fire brigade of their responses from 1 January 2009 to 31 Aug 2015,
 this is available at https://datahub.io/dataset/london-fire-brigade-incident-records/resource/7cd05a70-1e84-433b-847e-4e13a7f12610
 The raw data is in the files:
+
 LFB incident data 1 Jan 2009 to 31 Dec 2011.csv
+
 LFB incident data 1 Jan 2012 to 31 Aug 2015.csv
 
 The jupyter notebook Exploratory Data Analysis - London Fire Brigade.ipynb,
 performs an analysis of the data to look at the risk of fire in residential properties by different postcodes in london.
+
+## Running the notebook and generating visualisations
+
+The notebook for the data analysis runs normally through jupyter.
+
+### Generating the visualisation
+
+```bash
+python geojson_mapper/label_geojson.py
+```
+
+This will update data_visualistions/london_fires.geojson
 
 ## Visualisations
 A visualisation of the number of fires for residential properties by postcode district is in data_visualisations/london_fires.geojson.
