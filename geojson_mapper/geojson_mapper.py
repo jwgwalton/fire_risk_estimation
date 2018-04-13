@@ -26,12 +26,12 @@ class GeoJsonMapper:
         self.rgb_colour_mapper = RGBColourMapper(colour_mapper_type)
 
     def _read_csv(self, file_location):
-        labelling_values = {}
+        enrichment_data = {}
         with open(file_location) as csv_file:
             csv_reader = csv.reader(csv_file)
             for row in csv_reader:
-                labelling_values[row[0]] = row[1]
-        return labelling_values
+                enrichment_data[row[0]] = row[1]
+        return enrichment_data
 
     def _open_geojson(self, file_path):
         with open(file_path) as geojson_file:
@@ -44,7 +44,7 @@ class GeoJsonMapper:
             values[value] = (int(values[value]) - min_value)/(max_value - min_value)
         return values
 
-    def _get_label(self, region_map, region, region_identifier_type):
+    def _get_value_for_region(self, region_map, region, region_identifier_type):
         region_name = region.properties[region_identifier_type]
         return region_map.get(region_name, 0)
 
@@ -54,8 +54,8 @@ class GeoJsonMapper:
         unnormalised_values = self._read_csv(labels_file_path)
         normalised_values = self._normalise_values(unnormalised_values.copy())
         for region in self.geojson.features:
-            normalised_value = self._get_label(normalised_values, region, region_identifier)
-            unnormalised_value = self._get_label(unnormalised_values, region, region_identifier)
+            normalised_value = self._get_value_for_region(normalised_values, region, region_identifier)
+            unnormalised_value = self._get_value_for_region(unnormalised_values, region, region_identifier)
             self._update_region_colour_and_label(region, normalised_value, unnormalised_value)
 
     def _update_region_colour_and_label(self, feature, normalised_value, unnormalised_value):

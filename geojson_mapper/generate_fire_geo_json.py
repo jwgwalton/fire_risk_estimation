@@ -1,7 +1,7 @@
 from geojson_mapper import GeoJsonMapper
 
-geojson_file_path = "geojson/london.geojson"
-fire_data_file_path = "fire_data/fires_by_postcode.csv"
+geojson_file_path = "data/london.geojson"
+fire_data_file_path = "data/fires_by_postcode.csv"
 output_geojson_path = "../data_visualisations/london_fires.geojson"
 
 geojson_mapper = GeoJsonMapper("Number of Fires")
